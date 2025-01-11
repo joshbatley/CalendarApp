@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3A352BB9-43AF-43A7-B2B8-9392F061CB2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3281F55D-ADA0-4FC9-89B0-B20AAB878313}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar.Server", "src\Calendar.Server\Calendar.Server.csproj", "{F5501AD2-614F-43A7-8F16-013F0A4A8AE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar.Tests", "tests\Calendar.Tests\Calendar.Tests.csproj", "{253BC122-B2C8-4155-BE6E-72E12FC49A7A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F5501AD2-614F-43A7-8F16-013F0A4A8AE6} = {3A352BB9-43AF-43A7-B2B8-9392F061CB2C}
+		{253BC122-B2C8-4155-BE6E-72E12FC49A7A} = {3281F55D-ADA0-4FC9-89B0-B20AAB878313}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5501AD2-614F-43A7-8F16-013F0A4A8AE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5501AD2-614F-43A7-8F16-013F0A4A8AE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5501AD2-614F-43A7-8F16-013F0A4A8AE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5501AD2-614F-43A7-8F16-013F0A4A8AE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{253BC122-B2C8-4155-BE6E-72E12FC49A7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{253BC122-B2C8-4155-BE6E-72E12FC49A7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{253BC122-B2C8-4155-BE6E-72E12FC49A7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{253BC122-B2C8-4155-BE6E-72E12FC49A7A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
