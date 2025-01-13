@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  frontend:
+    container_name: frontend
+    ports:
+      - "8080:80"
+    build:
+      context: ./src/Calendar.UI
+      dockerfile: ui.dockerfile
+  server:
+    container_name: server
+    ports:
+      - "5003:5003"
+    build:
+      context: ./src/Calendar.Server
+      dockerfile: server.dockerfile
+    env_file:
+      - .env.local
