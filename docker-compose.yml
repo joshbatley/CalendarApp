@@ -6,14 +6,24 @@ services:
     ports:
       - "8080:80"
     build:
-      context: ./src/Calendar.UI
+      context: ./Calendar.UI
       dockerfile: ui.dockerfile
-  server:
-    container_name: server
+
+  # server-csharp:
+  #   container_name: server-csharp
+  #   ports:
+  #     - "5003:5003"
+  #   build:
+  #     context: ./Calendar.CSharp
+  #     dockerfile: server.dockerfile
+  #   env_file:
+  #     - .env.local
+  server-java:
+    container_name: server-java
     ports:
       - "5003:5003"
     build:
-      context: ./src/Calendar.Server
+      context: ./Calendar.Java
       dockerfile: server.dockerfile
     env_file:
       - .env.local

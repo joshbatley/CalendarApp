@@ -6,9 +6,9 @@ ENV ASPNETCORE_URLS=http://+:5003
 # Build stage
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
-COPY ["Calendar.Server.csproj", "./"]
+COPY ["./src/Calendar.Server/Calendar.Server.csproj", "./"]
 RUN dotnet restore "./Calendar.Server.csproj"
-COPY . .
+COPY ./src/Calendar.Server .
 WORKDIR "/src/."
 RUN dotnet build "Calendar.Server.csproj" -c Release -o /app/build
 

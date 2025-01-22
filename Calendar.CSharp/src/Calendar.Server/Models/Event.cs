@@ -12,6 +12,9 @@ public record Event(string Summary,
     bool IsActive
 )
 {
+    
+    
+    
     public static Event FromCalendarEvent(CalendarEvent ev)
     {
         return new Event(

@@ -1,0 +1,5 @@
+CalDav:
+  Username: ${CalDav__Username:''}
+  Password: ${CalDav__Password:''}
+  UserId: ${CalDav__UserId:''}
+  CalendarId: ${CalDav__CalendarId:''}
