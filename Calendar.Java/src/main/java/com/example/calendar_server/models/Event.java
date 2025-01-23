@@ -32,7 +32,7 @@ public record Event(
                 formatProperty(ev, "LOCATION"),
                 formatProperty(ev,"DESCRIPTION"),
                 formatProperty(ev,"UID"),
-                LocalDateTime.now().isAfter(start),
+                LocalDateTime.now().isAfter(end),
                 !LocalDateTime.now().isBefore(start) && !LocalDateTime.now().isAfter(end)
         );
     }
@@ -40,13 +40,13 @@ public record Event(
     private static String formatProperty(VEvent property, String key) {
         var prop = property.getProperty(key);
         var str = prop.isEmpty() ? "" : prop.orElseThrow().toString();
-        return str.replace(key + ":", "");
+        return str.replace(key + ":", "").trim();
     }
 
     private static LocalDateTime dateTimeFromString(String dateString) {
-        if (dateString.contains("Z")) {
-            var q = dateString.substring(0, dateString.indexOf('Z'));
-            return LocalDateTime.parse(q, DateTimeFormatter.ISO_DATE_TIME);
+        if (dateString.contains("T")) {
+            var cutoffPoint = dateString.indexOf('Z') == -1 ? dateString.length() : dateString.indexOf('Z');
+            return LocalDateTime.parse(dateString.substring(0, cutoffPoint), DateTimeFormatter.ISO_DATE_TIME);
         }
         return LocalDate.parse(dateString).atStartOfDay();
     }
