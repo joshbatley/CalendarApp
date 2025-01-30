@@ -3,8 +3,8 @@ package com.example.calendar_server.clients;
 import com.example.calendar_server.configuration.CalDavOptions;
 import com.example.calendar_server.models.Event;
 import com.example.calendar_server.models.Request;
-import net.fortuna.ical4j.data.CalendarBuilder;
-import net.fortuna.ical4j.data.ParserException;
+import com.example.calendar_server.services.DocEventParser;
+import com.example.calendar_server.services.XMLToICalEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.cache.annotation.Cacheable;
@@ -15,20 +15,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.List;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import java.util.Base64;
-import java.util.Objects;
 
 @Service
 public class CalDavClient implements ICalDavClient {
@@ -60,7 +49,11 @@ public class CalDavClient implements ICalDavClient {
     @Cacheable(value = "response", key = "#request.key()")
     public List<Event> getEvents(Request request) {
         var response = fetch(request.body());
-        return xmlToEvents(response);
+
+        // Move into handler or controller
+        return new DocEventParser(response)
+                    .mapEventsTo(XMLToICalEvent::parse);
+
     }
 
     private String fetch(String body) {
@@ -76,44 +69,5 @@ public class CalDavClient implements ICalDavClient {
                 .body(new ParameterizedTypeReference<>() {});
     }
 
-    private List<Event> xmlToEvents(String xmlString) {
-        if (xmlString == null || xmlString.isEmpty()) {
-            return new ArrayList<>();
-        }
 
-        try {
-            var doc = parseXml(xmlString);
-            return mapToEvents(doc);
-        } catch (Exception e) {
-            logger.error("Failed to parse events", e);
-            return new ArrayList<>();
-        }
-    }
-
-    private Document parseXml(String xmlString) throws ParserConfigurationException, IOException, SAXException {
-        var factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
-        return factory.newDocumentBuilder().parse(new InputSource(new StringReader(xmlString)));
-    }
-
-    private List<Event> mapToEvents(Document doc) throws ParserException, IOException {
-        var events = new ArrayList<Event>();
-        var calendarDataElement = doc.getElementsByTagNameNS("urn:ietf:params:xml:ns:caldav", "calendar-data");
-
-        for (var i = 0; i < calendarDataElement.getLength(); i++) {
-            events.addAll(parseEvents(calendarDataElement.item(i)));
-        }
-        return events;
-    }
-
-    private List<Event> parseEvents(Node data) throws ParserException, IOException {
-        if (data == null || data.getFirstChild() == null) {
-            return new ArrayList<>();
-        }
-        var calendar = new CalendarBuilder().build(new StringReader(data.getTextContent()));
-        return calendar.getComponents().stream()
-                .map(Event::fromCalendarComponent)
-                .filter(Objects::nonNull)
-                .toList();
-    }
 }
