@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Box, ThemeDefaultProvider } from '@edgmont-ui/react'
+import { Box, EdgmontUI } from '@edgmont-ui/react'
 import { SearchArea, Header, EventArea } from './components';
 import { callApi, callPastApi, searchApi } from './api';
-import { inheritedTheme } from './utils';
 
 const App = () => {
   const [events, setEvents] = useState<CalendarEvents[]>([]);
   const [pastEvents, setPastEvents] = useState<CalendarEvents[]>([]);
   const [searchEvents, setSearchEvents] = useState<CalendarEvents[]>([]);
   const [dates, setDates] = useState<any[]>([]);
-  const [theme, setTheme] = useState<'light' | 'dark'>(inheritedTheme);
-
-  const changeTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light')
-  }
 
   const searchDate = (e: any) => {
     let [start, end] = e;
@@ -48,14 +42,14 @@ const App = () => {
   }, [dates])
 
   return (
-    <ThemeDefaultProvider theme={theme}>
-      <Header theme={theme} changeTheme={changeTheme} />
+    <EdgmontUI>
+      <Header />
 
       <Box mx="10" pt="5" display="grid" gridTemplateColumns="1fr 1fr" gridGap="20px">
         <SearchArea onChange={searchDate} searchEvents={searchEvents} />
         <EventArea events={events} pastEvents={pastEvents} />
       </Box>
-    </ThemeDefaultProvider >
+    </EdgmontUI >
   )
 }
 

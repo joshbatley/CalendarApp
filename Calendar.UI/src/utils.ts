@@ -1,1 +1,0 @@
-export const inheritedTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? 'light' : 'dark';

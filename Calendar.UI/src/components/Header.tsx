@@ -1,15 +1,9 @@
-import { Box } from "@edgmont-ui/react";
-import { Theme } from "./Theme";
+import { Box, ThemeSwitch } from "@edgmont-ui/react";
 import { Title } from "./Title";
 
-type HeaderProps = {
-  changeTheme: () => void;
-  theme: 'light' | 'dark';
-}
-
-export const Header: React.FC<HeaderProps> = ({ changeTheme, theme }) => (
+export const Header: React.FC = () => (
   <Box display="flex" justifyContent="space-between" px="3" py="5" borderBottom="border.1" bg="offsetBackground">
     <Title />
-    <Theme onChange={changeTheme} checked={theme === 'dark'} />
+    <ThemeSwitch />
   </Box>
 )
