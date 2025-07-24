@@ -1,4 +1,4 @@
-import { Box, ThemeSwitch } from "@edgmont-ui/react";
+import { Box, ThemeSwitch } from "@muffled-ui/react";
 import { Title } from "./Title";
 
 export const Header: React.FC = () => (

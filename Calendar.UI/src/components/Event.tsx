@@ -1,4 +1,4 @@
-import { Box, Typography } from "@edgmont-ui/react"
+import { Box, Typography } from "@muffled-ui/react"
 import { MapPinIcon } from "@heroicons/react/16/solid";
 import { formatDate } from "date-fns"
 

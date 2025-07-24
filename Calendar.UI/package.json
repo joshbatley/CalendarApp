@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@edgmont-ui/react": "^1.0.18",
     "@heroicons/react": "^2.2.0",
+    "@muffled-ui/react": "^1.0.22",
     "date-fns": "^4.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

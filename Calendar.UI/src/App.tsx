@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Box, EdgmontUI } from '@edgmont-ui/react'
+import { Box, EdgmontUI } from '@muffled-ui/react'
 import { SearchArea, Header, EventArea } from './components';
 import { callApi, callPastApi, searchApi } from './api';
 

@@ -1,4 +1,4 @@
-import { Box, TabPane, Tabs } from "@edgmont-ui/react";
+import { Box, TabPane, Tabs } from "@muffled-ui/react";
 import { EventBox } from "./EventBox";
 
 type EventAreaProps = {

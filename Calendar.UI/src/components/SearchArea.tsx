@@ -1,4 +1,4 @@
-import { Box } from "@edgmont-ui/react"
+import { Box } from "@muffled-ui/react"
 import { EventBox } from "./EventBox";
 import { DatePicker } from "./DatePicker";
 

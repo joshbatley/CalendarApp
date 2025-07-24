@@ -1,4 +1,4 @@
-import { Box, DateRangePicker } from "@edgmont-ui/react"
+import { Box, DateRangePicker } from "@muffled-ui/react"
 
 type DatePickerProps = {
   onChange: any
